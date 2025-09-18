@@ -1,0 +1,26 @@
+# Maven / Java
+target/
+*.iml
+.idea/
+.project
+.classpath
+.settings/
+.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+
+# Env & secrets
+.env
+*.key.json
+
+# Build outputs
+*.jar
+
+**/application-prod.properties
+
+**/application-prod.properties

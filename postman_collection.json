@@ -1,0 +1,92 @@
+{
+  "info": {
+    "name": "Book Manager API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get all books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Create book",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Test\",\"author\": \"Me\"}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update book",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"Updated\",\"author\": \"Me\"}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "1"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete book",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/1",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "1"
+          ]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+openapi: 3.0.1
+info:
+  title: Book Manager API
+  version: 1.0.0
+paths:
+  /books:
+    get:
+      summary: List all books
+      responses:
+        "200":
+          description: OK
+    post:
+      summary: Create a book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        "200":
+          description: Created
+  /books/{id}:
+    get:
+      summary: Get a book by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "200": { description: OK }
+    put:
+      summary: Update a book
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        "200": { description: Updated }
+    delete:
+      summary: Delete a book
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: integer }
+      responses:
+        "204": { description: Deleted }
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id: { type: integer }
+        title: { type: string }
+        author: { type: string }
