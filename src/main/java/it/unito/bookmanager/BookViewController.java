@@ -2,10 +2,7 @@ package it.unito.bookmanager;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class BookViewController {
@@ -23,24 +20,27 @@ public class BookViewController {
     }
 
     @PostMapping("/add")
-    public String addBook(@RequestParam String title, @RequestParam String author) {
-        Book book = new Book();
-        book.setTitle(title);
-        book.setAuthor(author);
-        bookRepository.save(book);
+    public String addBook(
+            @RequestParam String title,
+            @RequestParam String author,
+            @RequestParam String isbn) {
+        bookRepository.save(new Book(null, title, author, isbn));
         return "redirect:/";
     }
 
     @PostMapping("/update/{id}")
-    public String updateBook(@PathVariable Long id,
-                             @RequestParam String title,
-                             @RequestParam String author) {
-        Book book = bookRepository.findById(id).orElse(null);
-        if (book != null) {
+    public String updateBook(
+            @PathVariable Long id,
+            @RequestParam String title,
+            @RequestParam String author,
+            @RequestParam String isbn) {
+
+        bookRepository.findById(id).ifPresent(book -> {
             book.setTitle(title);
             book.setAuthor(author);
+            book.setIsbn(isbn);
             bookRepository.save(book);
-        }
+        });
         return "redirect:/";
     }
 
